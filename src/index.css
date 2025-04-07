@@ -5,3 +5,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+a.active{
+  background-color: gainsboro;
+}
