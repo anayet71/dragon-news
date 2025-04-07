@@ -1,5 +1,7 @@
 import Header from "../components/Header";
 import LatestNews from "../components/LatestNews";
+import LeftNavbar from "../components/layout-component/LeftNavbar";
+import RightNav from "../components/layout-component/RightNav";
 import Navbar from "../components/Navbar";
 
 ;
@@ -18,13 +20,13 @@ const HomeLayout = () => {
             </nav>
             <main className="w-11/12 mx-auto pt-6 grid md:grid-cols-12 gap-3">
                 <aside className="col-span-3">
-                    left Navbar
+                    <LeftNavbar></LeftNavbar>
                 </aside>
                 <section className="col-span-6">
                     Main content
                 </section>
                 <aside className="col-span-3">
-                    Right Navbar
+                    <RightNav></RightNav>
                 </aside>
             </main>
         </div>
