@@ -33,8 +33,8 @@ const NewsCard = ({ news }) => {
                 <h2 className="card-title text-lg">{title}</h2>
 
                 {/* Thumbnail */}
-                <figure className="my-4">
-                <img src={thumbnail_url} alt="Thumbnail" className="rounded-md  w-[518px] h-[260px] object-cover" />
+                <figure className="my-4 overflow-hidden">
+                    <img src={news.image_url} alt="Thumbnail" className="rounded-md  object-cover w-full" />
                 </figure>
 
                 {/* Details */}
