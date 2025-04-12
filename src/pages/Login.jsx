@@ -14,10 +14,14 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 setUser(user)
+                
+                
             })
             .catch((error) => {
                 alert(error.code)
             });
+            form.email.value = ''
+            form.password.value = ''
     }
     return (
         <div className=" min-h-screen flex justify-center items-center bg-[#F3F3F3] ">
