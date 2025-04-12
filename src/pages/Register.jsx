@@ -1,36 +1,39 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 
 const Register = () => {
 
-    const {createNewUser, setUser} = useContext(AuthContext)
-
-    const handleSubmit = (e) =>{
+    const { createNewUser, setUser } = useContext(AuthContext)
+    const [error, setError] = useState({})
+    const handleSubmit = (e) => {
         e.preventDefault()
         // Get form data
         const form = new FormData(e.target)
         const name = form.get("name")
+        if (name.length < 5) {
+            setError({ ...error, name: 'Must be more than 5 character long' })
+        }
         const email = form.get("email")
         const password = form.get("password")
         const photo = form.get("photo")
-        console.log(  name, email, password, photo )
+        console.log(name, email, password, photo)
 
         createNewUser(email, password).then((result) => {
             const user = result.user
             setUser(user)
             console.log(user)
         })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-            
-            // ..
-          });
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+
+                // ..
+            });
     }
-    
+
     return (
         <div className=" min-h-screen flex justify-center items-center bg-[#F3F3F3] ">
             <div className="card w-full max-w-sm  shrink-0 py-10 bg-white">
@@ -39,7 +42,9 @@ const Register = () => {
                     <fieldset className="fieldset">
                         <label className="fieldset-label">Name</label>
                         <input name="name" type="text" className="input" placeholder="Name" />
-
+                        {
+                            error.name && <label className="text-red-600">{error.name}</label>
+                        }
                         <label className="fieldset-label">Email</label>
                         <input name="email" type="email" className="input" placeholder="Email" />
 
@@ -48,7 +53,7 @@ const Register = () => {
 
                         <label className="fieldset-label">Password</label>
                         <input name="password" type="password" className="input" placeholder="Password" />
-                        
+
                         <div><a className="link link-hover">Forgot password?</a></div>
                         <button className="btn btn-neutral mt-4">Register</button>
                         <p className="font-semibold pt-2 text-gray-500 text-center">Already have an account?  <Link to='/auth/login'>Login</Link></p>
