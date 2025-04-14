@@ -16,7 +16,11 @@ const Navbar = () => {
                 <Link to='/about'>About</Link>
             </div>
             <div className="login flex gap-3 items-center">
-                <img src={userIcon} alt="" />
+                {
+                    user && user?.email ? <div> <img className="w-12 rounded-full" src={user.photoURL} alt="" /> 
+                    <p>{user.displayName} </p> </div> : <img src={userIcon} alt="" />
+                    
+                }
                 {
                     user && user?.email? <button onClick={logOut} className="btn btn-neutral px-7">LogOut</button> :  <Link to='auth/login' className="btn btn-neutral px-7">Login</Link>
                 }
