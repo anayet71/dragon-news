@@ -2,9 +2,9 @@ import moment from 'moment';
 import logo from '../assets/logo.png'
 
 const Header = () => {
+ 
     return (
         <div className='flex flex-col justify-center items-center gap-5 py-2'>
-        
         <div className="logo">
             <img className='w-[400px]' src={logo} alt="" />
         </div>
